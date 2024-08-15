@@ -1,5 +1,7 @@
 <script lang="ts">
 import SelecionarIngredientes from './SelecionarIngredientes.vue';
+import SuaLista from './SuaLista.vue';
+import Tag from './Tag.vue';
 
   export default {
     data() {
@@ -14,7 +16,7 @@ import SelecionarIngredientes from './SelecionarIngredientes.vue';
         ]
     }
   },
-  components: { SelecionarIngredientes }
+  components: { SelecionarIngredientes, SuaLista, Tag }
 }
 </script>
 
@@ -22,19 +24,10 @@ import SelecionarIngredientes from './SelecionarIngredientes.vue';
   
   <main class="conteudo-principal">
 
-    <section>
-      <span class="subtitulo-lg sua-lista-texto">Sua lista:</span>
-      <ul v-if="ingredientes.length" class="ingredientes-sua-lista">        
-        <li v-for="ingrediente in ingredientes" :key="ingrediente" class="ingrediente">{{ ingrediente }}
-        </li>     
-      </ul>
-      
-      <p v-else class="paragrafo lista-vazia">
-        <img src="../assets/images/icones/lista-vazia.svg" alt="Ícone de pesquisa">
-        Sua lista está vazia, selecione os ingredientes para iniciar.
-      </p>
-    </section>
+    <SuaLista :ingredientes="ingredientes" />
     <SelecionarIngredientes />
+  
+
   </main>
   
 </template>
@@ -52,54 +45,4 @@ import SelecionarIngredientes from './SelecionarIngredientes.vue';
   gap: 5rem;
 }
 
-.sua-lista-texto {
-  color: var(--coral, #F0633C);
-  display: block;
-  text-align: center;
-  margin-bottom: 1.5rem;
-}
-
-.ingredientes-sua-lista {
-  display: flex;
-  justify-content: center;
-  gap: 1rem 1.5rem;
-  flex-wrap: wrap;
-}
-
-.ingrediente {
-  display: inline-block;
-  border-radius: 0.5rem;
-  min-width: 4.25rem;
-  padding: 0.5rem;
-  text-align: center;
-    transition: 0.2s;
-    color: var(--creme, #FFFAF3);
-  background: var(--coral, #F0633C);
-  font-weight: 700;
-}
-
-.lista-vazia {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 0.25rem;
-
-  color: var(--coral, #F0633C);
-  text-align: center;
-}
-
-@media only screen and (max-width: 1300px) {
-  .conteudo-principal {
-    padding: 5rem 3.75rem;
-    gap: 3.5rem;
-  }
-}
-
-@media only screen and (max-width: 767px) {
-  .conteudo-principal {
-    padding: 4rem 1.5rem;
-    gap: 4rem;
-  }
-}
 </style>

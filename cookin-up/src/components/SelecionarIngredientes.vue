@@ -1,26 +1,20 @@
 <script lang="ts">
 import { obterCategorias } from '@/http/index';
-import type ICategoria from '@/interfaces/ICategorias';
+import type ICategoria from '@/interfaces/ICategoria';
+import CardCategoria from '@/components/CardCategoria.vue';
+
 
 export default{
   data() {
     return{
-      // this.caegorias aprensentou erro pois o array estava vazio
-      // Type 'ICategoria[]' is not assignable to type 'never[]'.
-      // para corrigir o erro, basta adicionar um array de categorias
-      // como abaixo
-    
-      // categorias: []
-      categorias: [] as unknown as ICategoria
+      categorias: [] as ICategoria[]
     }
   },
-  created() {
-    this.obterCategorias();
+  async created() {
+    this.categorias = await obterCategorias();
   },
-  methods: {
-    async obterCategorias() {
-      this.categorias = await obterCategorias();
-    }
+  components: {
+    CardCategoria
   }
 }
 
@@ -36,7 +30,7 @@ export default{
 
     <ul class="categorias">
       <li v-for="categoria in categorias" :key="categoria.nome">
-        {{ categoria.nome }}
+        <CardCategoria :categoria="categoria"/>
       </li>
     </ul>
 
