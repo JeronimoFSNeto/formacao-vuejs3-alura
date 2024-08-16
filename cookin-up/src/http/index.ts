@@ -1,4 +1,4 @@
-import type ICategoria from "@/interfaces/ICategorias";
+import type ICategoria from "@/interfaces/ICategoria";
 
 export async function obterCategorias() {
   const resposta = await fetch(
