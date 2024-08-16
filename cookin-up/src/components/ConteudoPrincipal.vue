@@ -13,6 +13,9 @@ import Tag from './Tag.vue';
     methods: {
       adicionarIngrediente(ingrediente: string) {
         this.ingredientes.push(ingrediente);
+      },
+      removerIngrediente(ingrediente: string) {
+        this.ingredientes = this.ingredientes.filter(iLista => iLista !== ingrediente);
       }
   }
 }
@@ -26,6 +29,7 @@ import Tag from './Tag.vue';
 
     <SelecionarIngredientes 
       @adicionar-ingrediente="adicionarIngrediente"
+      @remover-ingrediente="removerIngrediente"
     />
   </main>
 </template>
